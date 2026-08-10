@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        background-color: rgb(138, 100, 5);
+      }
+      .container {
+        max-width: 350px;
+        border-radius: 15px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: hsl(0, 0%, 0%);
+      }
+      .display {
+        padding: 50px 0px;
+        border: none;
+        border-radius: 10px;
+        font-size: 2.2rem;
+        width: 100%;
+        color: white;
+        background-color: hsl(0, 0%, 10%);
+      }
+      .calculate {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+      }
+      .calculate button:nth-child(17) {
+        text-align: left;
+        grid-column: 2 span;
+      }
+      .bccGrey {
+        background-color: hsl(0, 0%, 40%);
+      }
+      .bccGold {
+        background-color: hsl(43, 73%, 40%);
+      }
+      .bccGold:hover {
+        background-color: hsl(43, 68%, 49%);
+      }
+      button {
+        margin-top: 10px;
+        padding: 20px;
+        font-size: 2rem;
+        border-radius: 50px;
+        border: none;
+        background-color: hsl(0, 0%, 25%);
+        color: hsl(0, 0%, 80%);
+      }
+      button:hover {
+        color: hsl(0, 0%, 80%);
+        background-color: hsl(0, 0%, 35%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input class="display" readonly />
+      <div class="calculate">
+        <button onclick="clearDisplay()" class="bccGrey">AC</button>
+        <button onclick="AppendToDisplay('+/-')" class="bccGrey">+/-</button>
+        <button onclick="AppendToDisplay('%')" class="bccGrey">%</button>
+        <button onclick="AppendToDisplay('/')" class="bccGold">/</button>
+        <button onclick="AppendToDisplay('7')">7</button>
+        <button onclick="AppendToDisplay('8')">8</button>
+        <button onclick="AppendToDisplay('9')">9</button>
+        <button onclick="AppendToDisplay('*')" class="bccGold">*</button>
+        <button onclick="AppendToDisplay('4')">4</button>
+        <button onclick="AppendToDisplay('5')">5</button>
+        <button onclick="AppendToDisplay('6')">6</button>
+        <button onclick="AppendToDisplay('-')" class="bccGold">-</button>
+        <button onclick="AppendToDisplay('1')">1</button>
+        <button onclick="AppendToDisplay('2')">2</button>
+        <button onclick="AppendToDisplay('3')">3</button>
+        <button onclick="AppendToDisplay('+')" class="bccGold">+</button>
+        <button onclick="AppendToDisplay('0')">0</button>
+        <button onclick="AppendToDisplay('.')">.</button>
+        <button onclick="Total()" class="bccGold">=</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const display = document.querySelector(".display");
+
+    function AppendToDisplay(input) {
+      display.value += input;
+    }
+    function clearDisplay() {
+      display.value = "";
+    }
+    function Total() {
+      try {
+        display.value = eval(display.value);
+      } catch (error) {
+        display.value = "Error";
+      }
+    }
+  </script>
+</html>
