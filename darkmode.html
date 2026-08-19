@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Field Notes — Dark Mode Demo</title>
+    <style>
+      :root {
+        --paper: #f3efe6;
+        --ink: #2b2620;
+        --ink-soft: #6b6355;
+        --rule: #d9d2c2;
+        --accent: #a45d3b;
+        --accent-soft: #e8d9cc;
+        --card: #fffdf9;
+        --shadow: rgba(43, 38, 32, 0.08);
+        --transition: 320ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      [data-theme="dark"] {
+        --paper: #14161b;
+        --ink: #e9e4d8;
+        --ink-soft: #9a9488;
+        --rule: #2e323b;
+        --accent: #e0a15e;
+        --accent-soft: #2a2418;
+        --card: #1b1e25;
+        --shadow: rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+        background: var(--paper);
+        color: var(--ink);
+        transition:
+          background var(--transition),
+          color var(--transition);
+        min-height: 100vh;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 28px 48px;
+        border-bottom: 1px solid var(--rule);
+        transition: border-color var(--transition);
+      }
+
+      .masthead {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .masthead .eyebrow {
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .masthead h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      /* Toggle switch styled as a sun/moon dial */
+      .dial {
+        position: relative;
+        width: 64px;
+        height: 34px;
+        border-radius: 999px;
+        background: var(--card);
+        border: 1px solid var(--rule);
+        cursor: pointer;
+        transition:
+          background var(--transition),
+          border-color var(--transition);
+        flex-shrink: 0;
+      }
+
+      .dial-knob {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        transition:
+          transform var(--transition),
+          background var(--transition);
+      }
+
+      [data-theme="dark"] .dial-knob {
+        transform: translateX(30px);
+      }
+
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 56px 24px 80px;
+      }
+
+      .kicker {
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 34px;
+        line-height: 1.15;
+        margin: 0 0 18px;
+        letter-spacing: -0.01em;
+      }
+
+      p {
+        font-size: 17px;
+        line-height: 1.7;
+        color: var(--ink-soft);
+        margin: 0 0 18px;
+      }
+
+      .drop-cap::first-letter {
+        float: left;
+        font-size: 58px;
+        line-height: 46px;
+        padding: 4px 8px 0 0;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .card {
+        margin-top: 40px;
+        background: var(--card);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        padding: 22px 24px;
+        box-shadow: 0 8px 24px var(--shadow);
+        transition:
+          background var(--transition),
+          border-color var(--transition),
+          box-shadow var(--transition);
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+      }
+
+      .card p {
+        margin: 0;
+        font-size: 15px;
+      }
+
+      code {
+        background: var(--accent-soft);
+        color: var(--accent);
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 14px;
+        font-family: "Courier New", monospace;
+      }
+
+      footer {
+        text-align: center;
+        padding: 24px;
+        font-family: "Courier New", monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        border-top: 1px solid var(--rule);
+        transition: border-color var(--transition);
+      }
+
+      @media (max-width: 560px) {
+        header {
+          padding: 20px;
+        }
+        main {
+          padding: 40px 20px 60px;
+        }
+        h2 {
+          font-size: 27px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+
+      .dial:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="masthead">
+        <span class="eyebrow">Field Notes · No. 14</span>
+        <h1>The Almanac</h1>
+      </div>
+      <button
+        class="dial"
+        id="themeDial"
+        aria-label="Toggle dark mode"
+        aria-pressed="false"
+      >
+        <span class="dial-knob" id="dialKnob">☀️</span>
+      </button>
+    </header>
+
+    <main>
+      <p class="kicker">On Reading at Night</p>
+      <h2>A theme that follows the light, or lets you choose your own.</h2>
+
+      <p class="drop-cap">
+        This page ships with two moods: a warm, paper-toned day edition and an
+        ink-dark night edition. Flip the dial in the header and every color,
+        border, and shadow eases across in a fraction of a second — no page
+        reload, no flash.
+      </p>
+
+      <p>
+        Your preference is remembered the next time you visit, using
+        <code>localStorage</code>. If you've never chosen one, the page quietly
+        follows your system's setting instead, and updates live if you change it
+        while this tab is open.
+      </p>
+
+      <div class="card">
+        <h3>How it's wired</h3>
+        <p>
+          A single <code>data-theme</code> attribute on the
+          <code>&lt;html&gt;</code>
+          element switches a set of CSS custom properties. JavaScript only
+          toggles that one attribute and saves the choice — the rest is CSS
+          doing the work.
+        </p>
+      </div>
+    </main>
+
+    <footer>Toggle above · Persists across visits</footer>
+
+    <script>
+      const root = document.documentElement;
+      const dial = document.getElementById("themeDial");
+      const knob = document.getElementById("dialKnob");
+      const STORAGE_KEY = "preferred-theme";
+
+      function applyTheme(theme) {
+        if (theme === "dark") {
+          root.setAttribute("data-theme", "dark");
+          knob.textContent = "🌙";
+          dial.setAttribute("aria-pressed", "true");
+        } else {
+          root.removeAttribute("data-theme");
+          knob.textContent = "☀️";
+          dial.setAttribute("aria-pressed", "false");
+        }
+      }
+
+      function getStoredTheme() {
+        try {
+          return localStorage.getItem(STORAGE_KEY);
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function storeTheme(theme) {
+        try {
+          localStorage.setItem(STORAGE_KEY, theme);
+        } catch (e) {
+          /* storage unavailable — theme still works for this session */
+        }
+      }
+
+      // Initial theme: stored choice, else system preference
+      const stored = getStoredTheme();
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      applyTheme(stored || (systemPrefersDark ? "dark" : "light"));
+
+      dial.addEventListener("click", () => {
+        const isDark = root.getAttribute("data-theme") === "dark";
+        const next = isDark ? "light" : "dark";
+        applyTheme(next);
+        storeTheme(next);
+      });
+
+      // Follow system changes only if the user hasn't made an explicit choice
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (e) => {
+          if (!getStoredTheme()) {
+            applyTheme(e.matches ? "dark" : "light");
+          }
+        });
+    </script>
+  </body>
+</html>

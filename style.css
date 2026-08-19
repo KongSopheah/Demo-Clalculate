@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+  background-color: hsl(0, 0%, 10%);
+  color: white;
+}
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.symbol {
+  position: fixed;
+  z-index: 10;
+  bottom: 70px;
+  right: 70px;
+  padding: 20px;
+  background-color: hsl(0, 0%, 80%);
+  font-size: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: none;
+}
+.symbol.active {
+  display: block;
+}
+.symbol:hover {
+  background-color: hsl(240, 100%, 90%);
+  color: white;
+}
+
+.sidebar-top {
+  position: fixed;
+  top: 0;
+  width: 18%;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.container .sidebar {
+  width: 18%;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding-top: 80px;
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0s 0.35s;
+}
+
+.container .sidebar.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0s;
+}
+.hamborger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hamborger:hover {
+  background-color: hsl(0, 0%, 40%);
+}
+
+.hamborger .btn {
+  position: relative;
+  width: 18px;
+  height: 3px;
+  background-color: hsl(0, 0%, 80%);
+  border-radius: 10px;
+}
+
+.hamborger .btn::before,
+.hamborger .btn::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: hsl(0, 0%, 80%);
+  border-radius: 10px;
+}
+
+.hamborger .btn::before {
+  top: 6px;
+}
+
+.hamborger .btn::after {
+  bottom: 6px;
+}
+.hamborger .btn.active {
+  background-color: transparent;
+}
+.hamborger .btn.active::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.hamborger .btn.active::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  height: auto;
+}
+
+.logo img {
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+.sidebar .key {
+  overflow: hidden;
+  position: sticky;
+  left: 50px;
+  top: 80px;
+}
+.sidebar .key li i {
+  margin-right: 5px;
+}
+
+.sidebar .key li a {
+  display: block;
+  padding: 8px 0px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: hsl(0, 0%, 90%);
+  transition: all 0.3s ease;
+}
+
+.sidebar .key li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(6px);
+}
+
+.container .content {
+  width: 82%;
+  height: 300vh;
+  padding: 20px;
+}
+
+.content .box-ctn {
+  height: 100vh;
+  width: 100%;
+  padding: 0 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box-ctn .logo-img {
+  width: 40%;
+
+  text-align: center;
+}
+.logo-img img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.box-ctn .title {
+  width: 60%;
+
+  text-align: center;
+}
+.title p {
+  font-size: 1.4rem;
+  text-align: justify;
+}
