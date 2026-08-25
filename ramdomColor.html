@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramdom Color</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        font-family: sans-serif;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+      .content-color {
+        text-align: center;
+      }
+      section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 300px;
+        height: 50px;
+        background-color: rgb(43, 43, 67);
+        color: hsl(0, 0%, 90%);
+        font-size: 1.5rem;
+        font-weight: 500;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      .btn {
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        background-color: rgba(102, 51, 153, 0.895);
+
+        color: hsl(0, 0%, 90%);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s linear;
+      }
+      .btn:active {
+        transform: scale(0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content-color">
+        <section>Color: <span> #EBEDEF</span></section>
+        <button class="btn">Color Ramdom 👆</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const btn = document.querySelector(".btn");
+    const span = document.querySelector("span");
+    btn.addEventListener("click", () => {
+      const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
+      let hex = "#";
+      for (let i = 0; i < 6; i++) {
+        hex = hex + arr[ramdom()];
+      }
+      span.innerHTML = hex;
+      document.body.style.backgroundColor = hex;
+
+      function ramdom() {
+        return Math.floor(Math.random() * arr.length);
+      }
+    });
+  </script>
+</html>
